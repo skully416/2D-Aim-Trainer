@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Code Editor</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ext-language_tools.js"></script>
+    <style>
+      iframe {
+  background-color: white;
+}
+
+      body {
+        display: flex;
+        flex-wrap: wrap;
+        background-color: #f2f2f2;
+      }
+      #html-editor, #css-editor, #js-editor, #output {
+        flex: 1;
+        height: 500px;
+        box-sizing: border-box;
+        padding: 10px;
+      }
+      #output {
+        width: calc(100% - 40px);
+        height: 500px;
+        border: 1px solid black;
+      }
+      .monokai {
+        background-color: #272822;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="html-editor"></div>
+    <div id="css-editor"></div>
+    <div id="js-editor"></div>
+    <iframe id="output"></iframe>
+    <button id="theme-toggle">Toggle Theme</button>
+  </body>
+          <script src="https://og.monkegamer.com/main.js"></script>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Typing Game</title>
+    <style>
+      #player-list {
+        margin-bottom: 10px;
+      }
+      #player-list li {
+        margin-bottom: 5px;
+      }
+      #current-word {
+        font-size: 24px;
+        font-weight: bold;
+      }
+      #score {
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <label for="name-input">Name:</label>
+      <input type="text" id="name-input" />
+      <button id="name-button">Update Name</button>
+    </div>
+    <div>
+      <ul id="player-list"></ul>
+    </div>
+    <div>
+      <span>Current Word:</span>
+      <span id="current-word"></span>
+    </div>
+    <div>
+      <label for="typed-word-input">Type the word above:</label>
+      <input type="text" id="typed-word-input" />
+    </div>
+    <div>
+      <button id="submit-button">Submit</button>
+    </div>
+    <div>
+      <span>Score:</span>
+      <span id="score"></span>
+    </div>
+    <script src="socket.io.js"></script>
+    <script>
+      const socket = io();
+
+      // Handle initial game state
+      socket.on('initial state', (state) => {
+        updatePlayerList(state.players);
+        updateCurrentWord(state.currentWord);
+      });
+
+      // Handle updated player list
+      socket.on('update players', (players) => {
+        updatePlayerList(players);
+      });
+
+      // Handle updated game state
+      socket.on('update game', (state) => {
+        updatePlayerList(state.players);
+        updateCurrentWord(state.currentWord);
+        updateScore(state.players[socket.id].score);
+      });
+
+      // Update player name on server
+      document.querySelector('#name-button').addEventListener('click', () => {
+        const name = document.querySelector('#name-input').value;
+        socket.emit('update name', name);
+      });
+
+      // Handle typed word submissions
+      document.querySelector('#submit-button').addEventListener('click', () => {
+        const typedWord = document.querySelector('#typed-word-input').value;
+        socket.emit('typed word', typedWord);
+        document.querySelector('#typed-word-input').value = '';
+      });
+
+      // Update player list
+      function updatePlayerList(players) {
+        const playerList = document.querySelector('#player-list');
+        playerList.innerHTML = '';
+
+        for (const playerId in players) {
+          const player = players[playerId];
+          const listItem = document.createElement('li');
+          listItem.textContent = `${player.name}: ${player.score}`;
+          playerList.appendChild(listItem);
+        }
+      }
+
+      // Update current word
+      function updateCurrentWord(currentWord) {
+        document.querySelector('#current-word').textContent = currentWord;
+      }
+
+      // Update player score
+      function updateScore(score) {
+        document.querySelector('#score').textContent = score;
+      }
+    </script>
+  </body>
+</html>

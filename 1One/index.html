@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<meta name="description" content="We offer a diverse range of games and tools such as Tetris, aim trainers, and online code editors to cater to the needs of both casual gamers and serious coders. We promise a fun and challenging experience to all of our users. Join the fun and start playing today!"><meta name="keywords" content="monkegamer, gaming, videogames, games, online, internet, epic">
+	<style>
+		body {
+	margin: 0;
+	padding: 0;
+	background-color: #f7f7f7;
+}
+
+#menu {
+	text-align: center;
+	margin-top: 50px;
+}
+
+#menu h1 {
+	font-size: 48px;
+	margin-bottom: 20px;
+}
+
+#menu p {
+	font-size: 24px;
+	margin-bottom: 10px;
+}
+
+#menu ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+#menu li {
+	display: inline-block;
+	margin: 0 10px;
+}
+
+#menu a {
+	display: block;
+	padding: 10px 20px;
+	background-color: #009688;
+	color: #fff;
+	text-decoration: none;
+	border-radius: 5px;
+	font-size: 18px;
+	transition: background-color 0.2s ease-in-out;
+}
+
+#menu a:hover {
+	background-color: #00796b;
+}
+
+#gameCanvas {
+	display: none;
+}
+	</style>
+<head>
+	<title>2D Aim Trainer</title>
+</head>
+<body>
+	<div id="menu">
+		<h1>2D Aim Trainer</h1>
+		<p>Select a mode:</p>
+		<ul>
+			<li><a href="https://og.monkegamer.com/1One/Easy/main.html" onclick="startGame('easy')">Easy</a></li>
+			<li><a href="https://og.monkegamer.com/1One/Medium/main.html" onclick="startGame('medium')">Medium</a></li>
+			<li><a href="https://og.monkegamer.com/1One/Hard/main.html" onclick="startGame('hard')">Hard</a></li>
+			<li><a href="https://og.monkegamer.com/1One/Expert/main.html" onclick="startGame('expert')">Expert</a></li>
+			<li><a href="https://og.monkegamer.com/1One/Insane/main.html" onclick="startGame('insane')">Insane</a></li>
+		</ul>
+	</div>
+	<canvas id="gameCanvas"></canvas>
+	<script src="game.js"></script>
+</body>
+</html>
